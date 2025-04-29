@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 require_once plugin_dir_path(__FILE__) . 'functions/functions.php';
 
-// Enqueue block-specific styles
+// Enqueue block-specific styles and scripts
 function bef_enqueue_photo_share_assets() {
     wp_enqueue_style('bef-photo-share-style', plugin_dir_url(__FILE__) . 'style.css');
     wp_enqueue_style('fancybox-css', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css', [], null);
