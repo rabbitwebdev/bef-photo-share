@@ -9,8 +9,8 @@ add_action( 'acf/include_fields', function() {
 	'title' => 'BEF Photo Share',
 	'fields' => array(
 		array(
-			'key' => 'field_681113f4daafb',
-			'label' => 'Photo Share Block Style',
+			'key' => 'field_681113f4da6822afb',
+			'label' => 'Gallery Style',
 			'name' => 'photo_share_block_style',
 			'aria-label' => '',
 			'type' => 'radio',
