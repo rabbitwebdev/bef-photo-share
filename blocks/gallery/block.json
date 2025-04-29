@@ -1,0 +1,16 @@
+{
+    "name": "acf/gallery",
+    "title": "Gallery",
+    "description": "A custom gallery block that uses ACF fields.",
+    "style": [ "file:./gallery.css" ],
+    "category": "formatting",
+    "icon": "admin-comments",
+    "keywords": ["gallery", "quote"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "gallery.php"
+    },
+    "supports": {
+        "anchor": true
+    }
+}
