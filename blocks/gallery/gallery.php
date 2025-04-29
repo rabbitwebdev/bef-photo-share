@@ -125,20 +125,13 @@ if( $photo_shares ): ?>
     <div class="swiper-button-prev"></div>
 </div>
 <?php endif; ?>
-  <script>
-    var swiperPS = new Swiper(".photo-share-swiper", {
-          slidesPerView: 4.25,
-    spaceBetween: 20,
-    autoplay: true,
-    loop: true,
-    });
-  </script>
+ 
 <script>
     const swiperPS = new Swiper('.photo-share-swiper', {
     // Optional parameters
     direction: 'horizontal',
     loop: true,
-    slidesPerView: 3,
+    slidesPerView: 3.5,
     spaceBetween: 30,
     // If we need pagination
    
