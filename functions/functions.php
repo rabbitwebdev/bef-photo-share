@@ -3,7 +3,7 @@
 if (!defined('ABSPATH')) {
     exit;
 }
-// Load the ACF plugin if it is not already loaded.
+// Load the post types if it is not already loaded.
 require_once plugin_dir_path(__FILE__) . '../includes/register-blocks.php';
 require_once plugin_dir_path(__FILE__) . '../includes/register-post-type.php';
 

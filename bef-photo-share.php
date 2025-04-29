@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: BEF Photo Share
- * Plugin URI:  https://yourwebsite.com
+ * Plugin URI:  https://britishesports.org
  * Description: A custom ACF block for sharing photos with captions.
  * Version: 1.0
  * Author: Your Name

@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Single Photo Share
- * Description: Displays game details using RAWG API with slug.
+ * Description: Displays photo gallery
  */
 
 get_header(); ?>

@@ -1,7 +1,7 @@
 {
     "name": "acf/gallery",
     "title": "Gallery",
-    "description": "A custom gallery block that uses ACF fields.",
+    "description": "A BEF Photo gallery block that uses ACF fields.",
     "style": [ "file:./gallery.css" ],
     "category": "formatting",
     "icon": "admin-comments",

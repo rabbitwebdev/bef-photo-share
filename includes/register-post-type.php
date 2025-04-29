@@ -40,6 +40,6 @@ function post_type_photo_share() {
         'show_ui'              => true,
 		'menu_icon'             => 'dashicons-format-image',
 	);
-	register_post_type( 'photo-share', $args );
+register_post_type( 'photo-share', $args );
 }
 add_action( 'init', 'post_type_photo_share', 0 );

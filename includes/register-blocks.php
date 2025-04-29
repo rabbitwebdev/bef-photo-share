@@ -44,6 +44,4 @@ function register_photo_share_acf_blocks() {
              wp_enqueue_style('photo-share-style', plugins_url('../blocks/gallery/gallery.css', __FILE__), array(), '1.5', 'all');
         },
     ));
-
-   
 }

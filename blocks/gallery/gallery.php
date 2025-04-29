@@ -64,13 +64,10 @@ if( $photo_shares ): ?>
   <?php if ( $ps_event_location ) : ?>
             <p class="post-card__date post-card__tag"><?php echo esc_html( $ps_event_location ); ?></p>
         <?php endif; ?>
-        <p class="view post-card__location post-card__category">View Gallery</p>
-            </div>
-            </div>
-            </div>
-      
-      
-      
+            <p class="view post-card__location post-card__category">View Gallery</p>
+                        </div>
+                    </div>
+                </div>
             </a>
         </div>
     <?php endforeach; ?>

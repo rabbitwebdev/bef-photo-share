@@ -7,8 +7,8 @@
 .gallery-item {
     width: 32%;
     background-color: #e4e4e4;
-        padding:10px;
-        color: #000;
+    padding:10px;
+    color: #000;
 }
 
 .the_gallery .gallery-item img.ps-img {
