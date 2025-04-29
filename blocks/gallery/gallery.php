@@ -131,7 +131,7 @@ if( $photo_shares ): ?>
     // Optional parameters
     direction: 'horizontal',
     loop: true,
-    slidesPerView: 2.2,
+    slidesPerView: 2.7,
     spaceBetween: 50,
     // If we need pagination
    
