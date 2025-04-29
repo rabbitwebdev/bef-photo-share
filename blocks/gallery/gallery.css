@@ -13,7 +13,8 @@
 
 .the_gallery .gallery-item img.ps-img {
     width: 100%;
-    height: 250px;
+    aspect-ratio: 1/1;
+    object-position: center;
     object-fit: cover;
 }
 
@@ -24,9 +25,9 @@
         width: 48%;
     }
 
-    .the_gallery .gallery-item img.ps-img {
+    /* .the_gallery .gallery-item img.ps-img {
         height: 230px;
-    }
+    } */
 }
 
 @media only screen and (max-width: 600px) {
@@ -34,9 +35,9 @@
         width: 100%;
     }
 
-    .the_gallery .gallery-item img.ps-img {
+    /* .the_gallery .gallery-item img.ps-img {
         height: 200px;
-    }
+    } */
 }
 
 
