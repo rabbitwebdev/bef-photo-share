@@ -6,6 +6,7 @@ if (!defined('ABSPATH')) {
 // Load the post types if it is not already loaded.
 require_once plugin_dir_path(__FILE__) . '../includes/register-blocks.php';
 require_once plugin_dir_path(__FILE__) . '../includes/register-post-type.php';
+require_once plugin_dir_path(__FILE__) . '../includes/register-acf.php';
 
 function bef_load_photo_share_template($template) {
     if (get_post_type() == 'photo-share' ) {
