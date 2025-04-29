@@ -11,6 +11,19 @@
         "renderTemplate": "gallery.php"
     },
     "supports": {
-        "anchor": true
+        "anchor": true,
+         "align": true,
+        "html": true,
+        "jsx": true,
+        "mode": true,
+        "spacing": {
+            "margin": true,
+            "padding": true,
+            "blockGap": "var:preset|spacing|50"
+        },
+        "color": {
+            "background": true,
+            "text": true
+        }
     }
 }

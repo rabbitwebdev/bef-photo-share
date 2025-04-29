@@ -40,7 +40,7 @@ $style  = implode( '; ', $styles );
 <?php
 $photo_shares = get_field('the_photo_share_bef');
 if( $photo_shares ): ?>
-    <div class="cards gallery-ps-grid row row-cols-lg-4 row-cols-md-2 row-cols-1 gap-3">
+    <div class="cards gallery-ps-grid  row row-cols-lg-3 row-cols-md-2 row-cols-1 gap-2">
     <?php foreach( $photo_shares as $photo_share ): 
         $permalink = get_permalink( $photo_share->ID );
         $title = get_the_title( $photo_share->ID );
