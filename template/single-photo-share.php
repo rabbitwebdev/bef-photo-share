@@ -6,6 +6,17 @@
 
 get_header(); ?>
 
+  <?php
+                // Start the loop.
+                if (have_posts()) :
+                    while (have_posts()) : the_post();
+                        // Display the content of the post.
+                        the_content();
+                    endwhile;
+                else :
+                    echo '<p>No content found.</p>';
+                endif;
+                ?>
 
 <div class="container-lg">
     <div class="row">
@@ -27,17 +38,7 @@ get_header(); ?>
             }
             ?>
             <div class="photo-share-content">
-                <?php
-                // Start the loop.
-                if (have_posts()) :
-                    while (have_posts()) : the_post();
-                        // Display the content of the post.
-                        the_content();
-                    endwhile;
-                else :
-                    echo '<p>No content found.</p>';
-                endif;
-                ?>
+              
 </div>
 </div>
 </div>
