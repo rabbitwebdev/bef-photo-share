@@ -92,9 +92,9 @@ if( $photo_shares ): ?>
             $custom_field = get_field( 'field_name', $photo_share->ID );
             ?>
                 <div class="swiper-slide">
-                    <a class="post-card post-card--small p-bottom--3" href="<?php echo esc_url( $permalink ); ?>">
+                    <a class="post-card  p-bottom--3" href="<?php echo esc_url( $permalink ); ?>">
                         <?php if ( has_post_thumbnail($photo_share->ID) ) { ?>
-                            <img src="<?php echo esc_url($featured_photo_img); ?>" class="card-img m-bottom--1" alt="..bjb.">
+                            <img src="<?php echo esc_url($featured_photo_img); ?>" class="card-img slider-photo-img m-bottom--1" alt="..bjb.">
                         <?php } ?>
                         <div class="post-card__content-container">
                             <h3 class="post-card__title m-bottom--1"><?php echo esc_html( $title ); ?></h3>
@@ -131,8 +131,8 @@ if( $photo_shares ): ?>
     // Optional parameters
     direction: 'horizontal',
     loop: true,
-    slidesPerView: 3.5,
-    spaceBetween: 30,
+    slidesPerView: 2.2,
+    spaceBetween: 50,
     // If we need pagination
    
   on: {
