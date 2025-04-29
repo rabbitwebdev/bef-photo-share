@@ -125,7 +125,7 @@ if( $photo_shares ): ?>
     <div class="swiper-button-prev"></div>
 </div>
 <?php endif; ?>
- 
+   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
     const swiperPS = new Swiper('.photo-share-swiper', {
     // Optional parameters
