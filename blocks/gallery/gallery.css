@@ -61,8 +61,15 @@
     padding: 40px 0;
 }
 .gallery-block .photo-share-swiper img.slider-photo-img {
-    width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 3/2;
     object-fit: cover;
     object-position: center;
+}
+
+.gallery-block .photo-share-swiper p.post-card__date.post-card__tag {
+    padding: 5px;
+}
+
+.gallery-block .photo-share-swiper .post-card__tags {
+    margin-top: 10px;
 }
