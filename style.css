@@ -17,7 +17,7 @@
 }
 .single-photo-share .the_gallery .gallery-item img.ps-img {
     width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 3/2;
     object-fit: cover;
     object-position: center;
 }
