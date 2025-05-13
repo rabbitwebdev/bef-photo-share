@@ -49,24 +49,62 @@ if( $photo_gallerys ): ?>
         <div class="the_gallery row row-cols-lg-3 row-cols-md-2 row-cols-1 gap-2">
              <?php  $i = 1; ?>
             <?php foreach( $photo_gallerys as $photo_gallery ): ?>
+                <style>
+   
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      max-width: 300px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .popup button {
+      margin-top: 10px;
+      padding: 8px 16px;
+    }
+  </style>
                 <?php   $image_caption = $photo_gallery['caption']; ?>
                  <?php   $image_title = $photo_gallery['title']; ?>
-                <div class="gallery-item col post-card m-bottom--3">
+            <div class="gallery-item col post-card m-bottom--3">
                 <a class="gallery-item-link " href="<?php echo esc_url($photo_gallery['url']); ?>"  onclick="openGalleryPopup(this)" data-fancybox="gallery">
                     <img class="fluid-img ps-img" src="<?php echo esc_url($photo_gallery['url']); ?>" alt="<?php echo esc_attr($photo_gallery['alt']); ?>" />
                 </a>
-             <h3 class="title m-top--1 m-bottom--1"><?php echo esc_html( $image_title ); ?></h3>
-           <a class="btn btn--underline btn--secondary download-gi" href="<?php echo esc_url($photo_gallery['url']); ?>" download>
- 
-        <span class="download-icon"></span>
-        Download
-   
-</a>
-                </div>
+                <h3 class="title m-top--1 m-bottom--1"><?php echo esc_html( $image_title ); ?></h3>
+                <a class="btn btn--underline btn--secondary download-gi" onclick="showPopup()" href="<?php echo esc_url($photo_gallery['url']); ?>" download>
+                        <span class="download-icon"></span>Download
+                </a>
+            </div>
+            <div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+      <p>This is a simple popup!</p>
+      <button onclick="hidePopup()">Close</button>
+    </div>
+  </div>
+             <script>
+    function showPopup() {
+      document.getElementById('popupOverlay').style.display = 'flex';
+    }
+
+    function hidePopup() {
+      document.getElementById('popupOverlay').style.display = 'none';
+    }
+  </script>
             <?php endforeach; ?>
         </div>
- 
-   
 <?php endif; ?>
             <!-- </div>
         </div>
