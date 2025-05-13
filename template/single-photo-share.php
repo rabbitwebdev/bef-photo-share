@@ -47,9 +47,7 @@ $photo_gallerys = get_field('single_bef_the_gallery');
 if( $photo_gallerys ): ?>
   
         <div class="the_gallery row row-cols-lg-3 row-cols-md-2 row-cols-1 gap-2">
-             <?php  $i = 1; ?>
-            <?php foreach( $photo_gallerys as $photo_gallery ): ?>
-                <style>
+            <style>
    
 
     .popup-overlay {
@@ -68,7 +66,8 @@ if( $photo_gallerys ): ?>
       padding: 20px;
       border-radius: 8px;
       text-align: center;
-      max-width: 300px;
+      width:100%;
+      max-width: 900px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
@@ -77,6 +76,9 @@ if( $photo_gallerys ): ?>
       padding: 8px 16px;
     }
   </style>
+             <?php  $i = 1; ?>
+            <?php foreach( $photo_gallerys as $photo_gallery ): ?>
+                
                 <?php   $image_caption = $photo_gallery['caption']; ?>
                  <?php   $image_title = $photo_gallery['title']; ?>
             <div class="gallery-item col post-card m-bottom--3">
