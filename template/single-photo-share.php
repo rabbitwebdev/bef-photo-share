@@ -46,7 +46,7 @@ get_header(); ?>
 $photo_gallerys = get_field('single_bef_the_gallery');
 if( $photo_gallerys ): ?>
   
-        <div class="the_gallery row row-cols-lg-4 row-cols-md-2 row-cols-1 gap-2">
+        <div class="the_gallery row row-cols-lg-3 row-cols-md-2 row-cols-1 gap-2">
              <?php  $i = 1; ?>
             <?php foreach( $photo_gallerys as $photo_gallery ): ?>
                 <?php   $image_caption = $photo_gallery['caption']; ?>

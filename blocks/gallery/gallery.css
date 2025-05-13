@@ -13,7 +13,7 @@
 
 .the_gallery .gallery-item img.ps-img {
     width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 3/2;
     object-position: center;
     object-fit: cover;
 }
