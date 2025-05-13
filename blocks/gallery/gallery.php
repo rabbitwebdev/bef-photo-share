@@ -35,7 +35,7 @@ $styles = array( 'background-color: ' . $background_color, 'color: ' . $text_col
 $style  = implode( '; ', $styles );
 ?>
 
-<div <?php echo esc_attr( $anchor ); ?>class="<?php echo esc_attr( $class_name ); ?>" >
+<div <?php echo esc_attr( $anchor ); ?>class="<?php echo esc_attr( $class_name ); ?> pad-bottom--3" >
    <div class="container">
 <?php
 $photo_share_block_style = get_field('photo_share_block_style');
