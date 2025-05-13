@@ -82,7 +82,7 @@ if( $photo_shares ): ?>
   $photo_shares = get_field('the_photo_share_bef');
 if( $photo_shares ): ?>
 <div class="swiper photo-share-swiper">
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper pad-bottom--3">
         <?php foreach( $photo_shares as $photo_share ): 
             $permalink = get_permalink( $photo_share->ID );
             $title = get_the_title( $photo_share->ID );
