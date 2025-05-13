@@ -84,13 +84,14 @@ if( $photo_gallerys ): ?>
                     <img class="fluid-img ps-img" src="<?php echo esc_url($photo_gallery['url']); ?>" alt="<?php echo esc_attr($photo_gallery['alt']); ?>" />
                 </a>
                 <h3 class="title m-top--1 m-bottom--1"><?php echo esc_html( $image_title ); ?></h3>
-                <a class="btn btn--underline btn--secondary download-gi" onclick="showPopup()" href="<?php echo esc_url($photo_gallery['url']); ?>" download>
+                <a class="btn btn--underline btn--secondary download-gi" onclick="showPopup()"  download>
                         <span class="download-icon"></span>Download
                 </a>
             </div>
             <div class="popup-overlay" id="popupOverlay">
     <div class="popup">
-      <p>This is a simple popup!</p>
+      <p>Sign up to get photo</p>
+       <?php echo do_shortcode( ' [gravityform id="16"] ' ); ?>
       <button onclick="hidePopup()">Close</button>
     </div>
   </div>
