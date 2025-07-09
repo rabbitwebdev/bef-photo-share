@@ -109,38 +109,97 @@ if( $photo_gallerys ): ?>
   </script>
             <?php endforeach; ?>
 
-            <form method="post" action="" id="bulk-download-form">
-            <?php  $i = 1; ?>
-    <?php foreach ($photo_gallerys as $i => $photo_gallery) : ?>
-        <div class="gallery-item">
-            <input 
-                type="checkbox" 
-                name="selected_images[]" 
-                value="<?php echo esc_url($photo_gallery['url']); ?>" 
-                id="select-<?php echo esc_attr($i); ?>"
-            />
-            <label for="select-<?php echo esc_attr($i); ?>">
-                <img 
-                    src="<?php echo esc_url($photo_gallery['url']); ?>" 
-                    alt="<?php echo esc_attr($photo_gallery['alt']); ?>"
-                    class="w-50 h-50" 
+            <form id="bulk-download-form">
+    <div id="gallery">
+    <?php  $i = 1; ?>
+        <?php foreach ($photo_gallerys as $i => $photo_gallery) : ?>
+            <div class="gallery-item">
+                <input 
+                    type="checkbox" 
+                    name="selected_images[]" 
+                    value="<?php echo esc_url($photo_gallery['url']); ?>" 
+                    id="select-<?php echo esc_attr($i); ?>"
+                    class="gallery-checkbox"
                 />
-                <span class="gallery-number"><?php echo esc_html($i); ?></span>
-            </label>
+                <label for="select-<?php echo esc_attr($i); ?>">
+                    <img 
+                        src="<?php echo esc_url($photo_gallery['url']); ?>" 
+                        alt="<?php echo esc_attr($photo_gallery['alt']); ?>" 
+                        class="gallery-image w-50 h-50"
+                        data-fancybox="gallery"
+                    />
+                    <span class="gallery-number"><?php echo esc_html($i); ?></span>
+                </label>
 
-            <a href="<?php echo esc_url($photo_gallery['url']); ?>" download>
-                <button type="button" class="download-button">
-                    <span class="download-icon"></span>
-                    Download
-                </button>
-            </a>
-        </div>
-    <?php endforeach; ?>
+                <a href="<?php echo esc_url($photo_gallery['url']); ?>" download>
+                    <button type="button" class="download-button">
+                        <span class="download-icon"></span> Download
+                    </button>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
 
-    <button type="submit" name="bulk_download" class="bulk-download-button">
-        Download Selected
-    </button>
+    <div class="bulk-controls">
+        <p><strong>Selected: <span id="selected-count">0</span></strong></p>
+        <input type="text" id="zip-filename" placeholder="Optional zip filename (e.g. my-photos)" />
+        <button type="submit" id="bulk-download-button">Download Selected</button>
+    </div>
 </form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('bulk-download-form');
+    const checkboxes = document.querySelectorAll('.gallery-checkbox');
+    const countDisplay = document.getElementById('selected-count');
+    const zipInput = document.getElementById('zip-filename');
+
+    function updateCount() {
+        const selected = document.querySelectorAll('.gallery-checkbox:checked');
+        countDisplay.textContent = selected.length;
+    }
+
+    checkboxes.forEach(cb => cb.addEventListener('change', updateCount));
+    updateCount();
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const selected = Array.from(document.querySelectorAll('.gallery-checkbox:checked'))
+            .map(cb => cb.value);
+        const zipName = zipInput.value.trim() || 'gallery-download';
+
+        if (selected.length === 0) {
+            alert('Please select at least one image.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('action', 'bulk_download_images');
+        formData.append('zip_name', zipName);
+        selected.forEach((url, i) => {
+            formData.append(`selected_images[${i}]`, url);
+        });
+
+        fetch('<?php echo admin_url("admin-ajax.php"); ?>', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(res => res.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = zipName + '.zip';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(err => alert('Failed to download: ' + err));
+    });
+});
+</script>
+
+
 
         </div>
 <?php endif; ?>
