@@ -86,20 +86,7 @@ if( $photo_gallerys ): ?>
                     <img class="fluid-img ps-img" src="<?php echo esc_url($photo_gallery['url']); ?>" alt="<?php echo esc_attr($photo_gallery['alt']); ?>" />
                 </a>
                 <h3 class="title m-top--1 m-bottom--1"><?php echo esc_html( $image_title ); ?></h3>
-                <input 
-        type="checkbox" 
-        name="selected_images[]" 
-        value="<?php echo esc_url($photo_gallery['url']); ?>" 
-        class="gallery-checkbox" 
-        id="select-<?php echo esc_attr($i); ?>"
-    />
-    <label for="select-<?php echo esc_attr($i); ?>">
-        <img 
-            src="<?php echo esc_url($photo_gallery['url']); ?>" 
-            alt="<?php echo esc_attr($photo_gallery['alt']); ?>" 
-        />
-        <span class="gallery-number"><?php echo esc_html($i); ?></span>
-    </label>
+               
                 <a class="btn btn--underline btn--secondary download-gi" onclick="showPopup()"  download>
                         <span class="download-icon"></span>Download
                 </a>
@@ -121,6 +108,40 @@ if( $photo_gallerys ): ?>
     }
   </script>
             <?php endforeach; ?>
+
+            <form method="post" action="" id="bulk-download-form">
+            <?php  $i = 1; ?>
+    <?php foreach ($photo_gallerys as $i => $photo_gallery) : ?>
+        <div class="gallery-item">
+            <input 
+                type="checkbox" 
+                name="selected_images[]" 
+                value="<?php echo esc_url($photo_gallery['url']); ?>" 
+                id="select-<?php echo esc_attr($i); ?>"
+            />
+            <label for="select-<?php echo esc_attr($i); ?>">
+                <img 
+                    src="<?php echo esc_url($photo_gallery['url']); ?>" 
+                    alt="<?php echo esc_attr($photo_gallery['alt']); ?>"
+                    class="w-50 h-50" 
+                />
+                <span class="gallery-number"><?php echo esc_html($i); ?></span>
+            </label>
+
+            <a href="<?php echo esc_url($photo_gallery['url']); ?>" download>
+                <button type="button" class="download-button">
+                    <span class="download-icon"></span>
+                    Download
+                </button>
+            </a>
+        </div>
+    <?php endforeach; ?>
+
+    <button type="submit" name="bulk_download" class="bulk-download-button">
+        Download Selected
+    </button>
+</form>
+
         </div>
 <?php endif; ?>
             <!-- </div>
