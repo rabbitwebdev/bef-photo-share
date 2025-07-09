@@ -86,6 +86,20 @@ if( $photo_gallerys ): ?>
                     <img class="fluid-img ps-img" src="<?php echo esc_url($photo_gallery['url']); ?>" alt="<?php echo esc_attr($photo_gallery['alt']); ?>" />
                 </a>
                 <h3 class="title m-top--1 m-bottom--1"><?php echo esc_html( $image_title ); ?></h3>
+                <input 
+        type="checkbox" 
+        name="selected_images[]" 
+        value="<?php echo esc_url($photo_gallery['url']); ?>" 
+        class="gallery-checkbox" 
+        id="select-<?php echo esc_attr($i); ?>"
+    />
+    <label for="select-<?php echo esc_attr($i); ?>">
+        <img 
+            src="<?php echo esc_url($photo_gallery['url']); ?>" 
+            alt="<?php echo esc_attr($photo_gallery['alt']); ?>" 
+        />
+        <span class="gallery-number"><?php echo esc_html($i); ?></span>
+    </label>
                 <a class="btn btn--underline btn--secondary download-gi" onclick="showPopup()"  download>
                         <span class="download-icon"></span>Download
                 </a>
