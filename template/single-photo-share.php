@@ -126,15 +126,18 @@ if( $photo_gallerys ): ?>
                     id="select-<?php echo esc_attr($i); ?>"
                     class="gallery-checkbox"
                 />
-                <label class="gallery-item-link" for="select-<?php echo esc_attr($i); ?>">
+                <label for="select-<?php echo esc_attr($i); ?>">
+                <a class="gallery-item-link " href="<?php echo esc_url($photo_gallery['url']); ?>"  data-fancybox="gallery">
                     <img 
                         src="<?php echo esc_url($photo_gallery['url']); ?>" 
                         alt="<?php echo esc_attr($photo_gallery['alt']); ?>" 
                         class="gallery-image fluid-img ps-img"
-                        data-fancybox="gallery"
+                       
                     />
+        </a>
+                    <span class="gallery-number"><?php echo esc_html($i); ?></span>
                 </label>
-               
+              
                 <h3 class="title m-top--1 m-bottom--1"><?php echo esc_html( $image_title ); ?></h3>
             </div>
         <?php endforeach; ?>
