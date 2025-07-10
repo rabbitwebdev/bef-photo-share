@@ -114,13 +114,7 @@ if( $photo_gallerys ): ?>
     <?php  $i = 1; ?>
         <?php foreach ($photo_gallerys as $i => $photo_gallery) : ?>
             <div class="gallery-item col post-card m-bottom--3">
-                <input 
-                    type="checkbox" 
-                    name="selected_images[]" 
-                    value="<?php echo esc_url($photo_gallery['url']); ?>" 
-                    id="select-<?php echo esc_attr($i); ?>"
-                    class="gallery-checkbox"
-                />
+               
                 <label class="gallery-item-link" for="select-<?php echo esc_attr($i); ?>">
                     <img 
                         src="<?php echo esc_url($photo_gallery['url']); ?>" 
@@ -128,15 +122,20 @@ if( $photo_gallerys ): ?>
                         class="gallery-image fluid-img ps-img"
                         data-fancybox="gallery"
                     />
-                    <span class="gallery-number"><?php echo esc_html($i); ?></span>
                 </label>
-
-               
+                <input 
+                    type="checkbox" 
+                    name="selected_images[]" 
+                    value="<?php echo esc_url($photo_gallery['url']); ?>" 
+                    id="select-<?php echo esc_attr($i); ?>"
+                    class="gallery-checkbox"
+                />
+                <h3 class="title m-top--1 m-bottom--1"><?php echo esc_html( $image_title ); ?></h3>
             </div>
         <?php endforeach; ?>
     </div>
 
-    <div class="bulk-controls">
+    <div class="bulk-controls m-bottom-3">
         <p><strong>Selected: <span id="selected-count">0</span></strong></p>
         <input type="text" id="zip-filename" placeholder="Optional zip filename (e.g. my-photos)" />
         <button type="submit" id="bulk-download-button">Download Selected</button>
