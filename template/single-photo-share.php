@@ -108,12 +108,12 @@ if( $photo_gallerys ): ?>
     }
   </script>
             <?php endforeach; ?>
-
+  </div>
             <form id="bulk-download-form">
-    <div id="gallery">
+    <div id="gallery" class="the_gallery row row-cols-lg-3 row-cols-md-2 row-cols-1 gap-2">
     <?php  $i = 1; ?>
         <?php foreach ($photo_gallerys as $i => $photo_gallery) : ?>
-            <div class="gallery-item">
+            <div class="gallery-item col post-card m-bottom--3">
                 <input 
                     type="checkbox" 
                     name="selected_images[]" 
@@ -121,21 +121,17 @@ if( $photo_gallerys ): ?>
                     id="select-<?php echo esc_attr($i); ?>"
                     class="gallery-checkbox"
                 />
-                <label for="select-<?php echo esc_attr($i); ?>">
+                <label class="gallery-item-link" for="select-<?php echo esc_attr($i); ?>">
                     <img 
                         src="<?php echo esc_url($photo_gallery['url']); ?>" 
                         alt="<?php echo esc_attr($photo_gallery['alt']); ?>" 
-                        class="gallery-image w-50 h-50"
+                        class="gallery-image fluid-img ps-img"
                         data-fancybox="gallery"
                     />
                     <span class="gallery-number"><?php echo esc_html($i); ?></span>
                 </label>
 
-                <a href="<?php echo esc_url($photo_gallery['url']); ?>" download>
-                    <button type="button" class="download-button">
-                        <span class="download-icon"></span> Download
-                    </button>
-                </a>
+               
             </div>
         <?php endforeach; ?>
     </div>
