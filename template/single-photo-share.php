@@ -119,7 +119,13 @@ if( $photo_gallerys ): ?>
           <?php   $image_caption = $photo_gallery['caption']; ?>
           <?php   $image_title = $photo_gallery['title']; ?>
             <div class="gallery-item col post-card m-bottom--3">
-               
+            <input 
+                    type="checkbox" 
+                    name="selected_images[]" 
+                    value="<?php echo esc_url($photo_gallery['url']); ?>" 
+                    id="select-<?php echo esc_attr($i); ?>"
+                    class="gallery-checkbox"
+                />
                 <label class="gallery-item-link" for="select-<?php echo esc_attr($i); ?>">
                     <img 
                         src="<?php echo esc_url($photo_gallery['url']); ?>" 
@@ -128,13 +134,7 @@ if( $photo_gallerys ): ?>
                         data-fancybox="gallery"
                     />
                 </label>
-                <input 
-                    type="checkbox" 
-                    name="selected_images[]" 
-                    value="<?php echo esc_url($photo_gallery['url']); ?>" 
-                    id="select-<?php echo esc_attr($i); ?>"
-                    class="gallery-checkbox"
-                />
+               
                 <h3 class="title m-top--1 m-bottom--1"><?php echo esc_html( $image_title ); ?></h3>
             </div>
         <?php endforeach; ?>
