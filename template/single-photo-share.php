@@ -75,6 +75,9 @@ if( $photo_gallerys ): ?>
       margin-top: 10px;
       padding: 8px 16px;
     }
+    .gallery-image:hover {
+      cursor: pointer;
+    }
   </style>
              <?php  $i = 1; ?>
             <?php foreach( $photo_gallerys as $photo_gallery ): ?>
@@ -113,6 +116,8 @@ if( $photo_gallerys ): ?>
     <div id="gallery" class="the_gallery row row-cols-lg-3 row-cols-md-2 row-cols-1 gap-2">
     <?php  $i = 1; ?>
         <?php foreach ($photo_gallerys as $i => $photo_gallery) : ?>
+          <?php   $image_caption = $photo_gallery['caption']; ?>
+          <?php   $image_title = $photo_gallery['title']; ?>
             <div class="gallery-item col post-card m-bottom--3">
                
                 <label class="gallery-item-link" for="select-<?php echo esc_attr($i); ?>">
