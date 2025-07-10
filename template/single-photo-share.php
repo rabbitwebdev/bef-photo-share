@@ -135,7 +135,7 @@ if( $photo_gallerys ): ?>
         <?php endforeach; ?>
     </div>
 
-    <div class="bulk-controls m-bottom-3">
+    <div class="bulk-controls m-bottom--3">
         <p><strong>Selected: <span id="selected-count">0</span></strong></p>
         <input type="text" id="zip-filename" placeholder="Optional zip filename (e.g. my-photos)" />
         <button type="submit" id="bulk-download-button">Download Selected</button>
