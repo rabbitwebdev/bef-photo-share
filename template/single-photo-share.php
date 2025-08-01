@@ -97,45 +97,41 @@ if( $photo_gallerys ): ?>
       document.getElementById('popupOverlay').style.display = 'none';
     }
   </script>
-            <form id="bulk-download-form">
-    <div id="gallery" class="the_gallery row row-cols-lg-3 row-cols-md-2 row-cols-1 gap-2">
-    <?php  $i = 1; ?>
-        <?php foreach ($photo_gallerys as $i => $photo_gallery) : ?>
-          <?php   $image_caption = $photo_gallery['caption']; ?>
-          <?php   $image_title = $photo_gallery['title']; ?>
-            <div class="gallery-item col post-card m-bottom--3">
+     <form method="post" action="" id="bulk-download-form">
+            <?php  $i = 1; ?>
+    <?php foreach ($photo_gallerys as $i => $photo_gallery) : ?>
+        <div class="gallery-item">
             <input 
-                    type="checkbox" 
-                    name="selected_images[]" 
-                    value="<?php echo esc_url($photo_gallery['url']); ?>" 
-                    id="select-<?php echo esc_attr($i); ?>"
-                    class="gallery-checkbox"
+                type="checkbox" 
+                name="selected_images[]" 
+                value="<?php echo esc_url($photo_gallery['url']); ?>" 
+                id="select-<?php echo esc_attr($i); ?>"
+            />
+            <label for="select-<?php echo esc_attr($i); ?>">
+                <img 
+                    src="<?php echo esc_url($photo_gallery['url']); ?>" 
+                    alt="<?php echo esc_attr($photo_gallery['alt']); ?>"
+                    class="w-50 h-50" 
                 />
-                <label for="select-<?php echo esc_attr($i); ?>">
-                <a class="gallery-item-link " href="<?php echo esc_url($photo_gallery['url']); ?>"  data-fancybox="gallery">
-                    <img 
-                        src="<?php echo esc_url($photo_gallery['url']); ?>" 
-                        alt="<?php echo esc_attr($photo_gallery['alt']); ?>" 
-                        class="gallery-image fluid-img ps-img"
-                       
-                    />
-        </a>
-                    <span class="gallery-number"><?php echo esc_html($i); ?></span>
-                </label>
-              
-                <h3 class="title m-top--1 m-bottom--1"><?php echo esc_html( $image_title ); ?></h3>
-            </div>
-        <?php endforeach; ?>
-    </div>
+                <span class="gallery-number"><?php echo esc_html($i); ?></span>
+            </label>
 
-    <div class="bulk-controls m-bottom--3">
-        <p><strong>Selected: <span id="selected-count">0</span></strong></p>
-        <input type="text" id="zip-filename" placeholder="Optional zip filename (e.g. my-photos)" />
-        <button type="submit" id="bulk-download-button">Download Selected</button>
-    </div>
+            <a href="<?php echo esc_url($photo_gallery['url']); ?>" download>
+                <button type="button" class="download-button">
+                    <span class="download-icon"></span>
+                    Download
+                </button>
+            </a>
+        </div>
+    <?php endforeach; ?>
+
+    <button type="submit" name="bulk_download" class="bulk-download-button">
+        Download Selected
+    </button>
 </form>
 
-<script>
+         
+<!-- <script>
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('bulk-download-form');
     const checkboxes = document.querySelectorAll('.gallery-checkbox');
@@ -185,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(err => alert('Failed to download: ' + err));
     });
 });
-</script>
+</script> -->
 
 
 
