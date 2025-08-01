@@ -81,62 +81,57 @@ if( $photo_gallerys ): ?>
   </style>
             
 
-    <div class="popup-overlay" id="popupOverlay">
-    <div class="popup">
-      <p>Sign up to get photo</p>
-       <?php echo do_shortcode( ' [gravityform id="16"] ' ); ?>
-      <button onclick="hidePopup()">Close</button>
-    </div>
-  </div>
-             <script>
-    function showPopup() {
-      document.getElementById('popupOverlay').style.display = 'flex';
-    }
-
-    function hidePopup() {
-      document.getElementById('popupOverlay').style.display = 'none';
-    }
-  </script>
-     <form method="post" action="" id="bulk-download-form">
-            <?php  $i = 1; ?>
-    <?php foreach ($photo_gallerys as $i => $photo_gallery) : ?>
-        <div class="gallery-item">
+  
+            <form id="bulk-download-form">
+    <div id="gallery" class="the_gallery row row-cols-lg-3 row-cols-md-2 row-cols-1 gap-2">
+    <?php  $i = 1; ?>
+        <?php foreach ($photo_gallerys as $i => $photo_gallery) : ?>
+          <?php   $image_caption = $photo_gallery['caption']; ?>
+          <?php   $image_title = $photo_gallery['title']; ?>
+            <div class="gallery-item col post-card m-bottom--3">
             <input 
-                type="checkbox" 
-                name="selected_images[]" 
-                value="<?php echo esc_url($photo_gallery['url']); ?>" 
-                id="select-<?php echo esc_attr($i); ?>"
-            />
-            <label for="select-<?php echo esc_attr($i); ?>">
-                <img 
-                    src="<?php echo esc_url($photo_gallery['url']); ?>" 
-                    alt="<?php echo esc_attr($photo_gallery['alt']); ?>"
-                    class="w-50 h-50" 
+                    type="checkbox" 
+                    name="selected_images[]" 
+                    value="<?php echo esc_url($photo_gallery['url']); ?>" 
+                    id="select-<?php echo esc_attr($i); ?>"
+                    class="gallery-checkbox"
                 />
-                <span class="gallery-number"><?php echo esc_html($i); ?></span>
-            </label>
+                <label for="select-<?php echo esc_attr($i); ?>">
+                <a class="gallery-item-link " href="<?php echo esc_url($photo_gallery['url']); ?>"  data-fancybox="gallery">
+                    <img 
+                        src="<?php echo esc_url($photo_gallery['url']); ?>" 
+                        alt="<?php echo esc_attr($photo_gallery['alt']); ?>" 
+                        class="gallery-image fluid-img ps-img"
+                    />
+        </a>
+                    <span class="gallery-number"><?php echo esc_html($i); ?></span>
+                </label>
+              
+                <h3 class="title m-top--1 m-bottom--1"><?php echo esc_html( $image_title ); ?></h3>
+            </div>
+        <?php endforeach; ?>
+    </div>
 
-            <a href="<?php echo esc_url($photo_gallery['url']); ?>" download>
-                <button type="button" class="download-button">
-                    <span class="download-icon"></span>
-                    Download
-                </button>
-            </a>
-        </div>
-    <?php endforeach; ?>
-
-    <button type="submit" name="bulk_download" class="bulk-download-button">
-        Download Selected
-    </button>
+    <!-- <div class="bulk-controls m-bottom--3">
+        <p><strong>Selected: <span id="selected-count">0</span></strong></p>
+        <input type="text" id="zip-filename" placeholder="Optional zip filename (e.g. my-photos)" />
+        <button type="submit" id="bulk-download-button">Download Selected</button>
+    </div> -->
+      <div class="bulk-controls">
+        <p><strong>Selected: <span id="selected-count">0</span></strong></p>
+        <input type="email" id="newsletter-email" placeholder="Enter your email" required />
+        <button type="submit" id="bulk-download-button">Subscribe & Get Link</button>
+    </div>
 </form>
 
-         
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('bulk-download-form');
     const checkboxes = document.querySelectorAll('.gallery-checkbox');
     const countDisplay = document.getElementById('selected-count');
-    const zipInput = document.getElementById('zip-filename');
+    const emailInput = document.getElementById('newsletter-email');
+    const messageBox = document.getElementById('form-message');
 
     function updateCount() {
         const selected = document.querySelectorAll('.gallery-checkbox:checked');
@@ -151,16 +146,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const selected = Array.from(document.querySelectorAll('.gallery-checkbox:checked'))
             .map(cb => cb.value);
-        const zipName = zipInput.value.trim() || 'gallery-download';
+        const email = emailInput.value.trim();
 
+        if (!email || !email.includes('@')) {
+            alert('Please enter a valid email.');
+            return;
+        }
         if (selected.length === 0) {
             alert('Please select at least one image.');
             return;
         }
 
         const formData = new FormData();
-        formData.append('action', 'bulk_download_images');
-        formData.append('zip_name', zipName);
+        formData.append('action', 'send_newsletter_download');
+        formData.append('email', email);
         selected.forEach((url, i) => {
             formData.append(`selected_images[${i}]`, url);
         });
@@ -169,16 +168,15 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             body: formData,
         })
-        .then(res => res.blob())
-        .then(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = zipName + '.zip';
-            a.click();
-            window.URL.revokeObjectURL(url);
+        .then(res => res.json())
+        .then(data => {
+            messageBox.textContent = data.message;
+            if (data.success) {
+                form.reset();
+                countDisplay.textContent = "0";
+            }
         })
-        .catch(err => alert('Failed to download: ' + err));
+        .catch(err => alert('Something went wrong: ' + err));
     });
 });
 </script>
