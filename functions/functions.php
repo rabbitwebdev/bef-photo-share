@@ -19,64 +19,64 @@ function bef_load_photo_share_template($template) {
 }
 add_filter('template_include', 'bef_load_photo_share_template');
 
-// if (isset($_POST['bulk_download']) && !empty($_POST['selected_images'])) {
-//     $zip = new ZipArchive();
-//     $zip_name = 'gallery-download-' . time() . '.zip';
-//     $zip_path = __DIR__ . '/' . $zip_name;
-
-//     if ($zip->open($zip_path, ZipArchive::CREATE) === TRUE) {
-//         foreach ($_POST['selected_images'] as $file_url) {
-//             $file_content = file_get_contents($file_url);
-//             $file_name = basename($file_url);
-//             $zip->addFromString($file_name, $file_content);
-//         }
-//         $zip->close();
-
-//         // Send the zip file to the browser
-//         header('Content-Type: application/zip');
-//         header('Content-disposition: attachment; filename=' . $zip_name);
-//         header('Content-Length: ' . filesize($zip_path));
-//         readfile($zip_path);
-
-//         // Optional: delete zip after download
-//         unlink($zip_path);
-//         exit;
-//     } else {
-//         echo "Failed to create zip file.";
-//     }
-// }
-
-add_action('wp_ajax_bulk_download_images', 'handle_bulk_image_download');
-add_action('wp_ajax_nopriv_bulk_download_images', 'handle_bulk_image_download');
-
-function handle_bulk_image_download() {
-    if (empty($_POST['selected_images']) || !is_array($_POST['selected_images'])) {
-        wp_die('No images selected');
-    }
-
+if (isset($_POST['bulk_download']) && !empty($_POST['selected_images'])) {
     $zip = new ZipArchive();
-    $zip_name = sanitize_file_name($_POST['zip_name'] ?? 'gallery-download') . '.zip';
-    $zip_path = wp_upload_dir()['path'] . '/' . $zip_name;
+    $zip_name = 'gallery-download-' . time() . '.zip';
+    $zip_path = __DIR__ . '/' . $zip_name;
 
-    if ($zip->open($zip_path, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
+    if ($zip->open($zip_path, ZipArchive::CREATE) === TRUE) {
         foreach ($_POST['selected_images'] as $file_url) {
-            $file_name = basename($file_url);
             $file_content = file_get_contents($file_url);
-
-            if ($file_content !== false) {
-                $zip->addFromString($file_name, $file_content);
-            }
+            $file_name = basename($file_url);
+            $zip->addFromString($file_name, $file_content);
         }
         $zip->close();
 
+        // Send the zip file to the browser
         header('Content-Type: application/zip');
-        header('Content-Disposition: attachment; filename="' . $zip_name . '"');
+        header('Content-disposition: attachment; filename=' . $zip_name);
         header('Content-Length: ' . filesize($zip_path));
         readfile($zip_path);
 
-        unlink($zip_path); // Clean up
+        // Optional: delete zip after download
+        unlink($zip_path);
         exit;
     } else {
-        wp_die('Could not create zip file');
+        echo "Failed to create zip file.";
     }
 }
+
+// add_action('wp_ajax_bulk_download_images', 'handle_bulk_image_download');
+// add_action('wp_ajax_nopriv_bulk_download_images', 'handle_bulk_image_download');
+
+// function handle_bulk_image_download() {
+//     if (empty($_POST['selected_images']) || !is_array($_POST['selected_images'])) {
+//         wp_die('No images selected');
+//     }
+
+//     $zip = new ZipArchive();
+//     $zip_name = sanitize_file_name($_POST['zip_name'] ?? 'gallery-download') . '.zip';
+//     $zip_path = wp_upload_dir()['path'] . '/' . $zip_name;
+
+//     if ($zip->open($zip_path, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
+//         foreach ($_POST['selected_images'] as $file_url) {
+//             $file_name = basename($file_url);
+//             $file_content = file_get_contents($file_url);
+
+//             if ($file_content !== false) {
+//                 $zip->addFromString($file_name, $file_content);
+//             }
+//         }
+//         $zip->close();
+
+//         header('Content-Type: application/zip');
+//         header('Content-Disposition: attachment; filename="' . $zip_name . '"');
+//         header('Content-Length: ' . filesize($zip_path));
+//         readfile($zip_path);
+
+//         unlink($zip_path); // Clean up
+//         exit;
+//     } else {
+//         wp_die('Could not create zip file');
+//     }
+// }
