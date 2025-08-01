@@ -46,7 +46,7 @@ get_header(); ?>
 $photo_gallerys = get_field('single_bef_the_gallery');
 if( $photo_gallerys ): ?>
   
-        <div class="the_gallery row row-cols-lg-3 row-cols-md-2 row-cols-1 gap-2">
+     
             <style>
    
 
@@ -79,22 +79,9 @@ if( $photo_gallerys ): ?>
       cursor: pointer;
     }
   </style>
-             <?php  $i = 1; ?>
-            <?php foreach( $photo_gallerys as $photo_gallery ): ?>
-                
-                <?php   $image_caption = $photo_gallery['caption']; ?>
-                 <?php   $image_title = $photo_gallery['title']; ?>
-            <div class="gallery-item col post-card m-bottom--3">
-                <a class="gallery-item-link " href="<?php echo esc_url($photo_gallery['url']); ?>"  onclick="openGalleryPopup(this)" data-fancybox="gallery">
-                    <img class="fluid-img ps-img" src="<?php echo esc_url($photo_gallery['url']); ?>" alt="<?php echo esc_attr($photo_gallery['alt']); ?>" />
-                </a>
-                <h3 class="title m-top--1 m-bottom--1"><?php echo esc_html( $image_title ); ?></h3>
-               
-                <a class="btn btn--underline btn--secondary download-gi" onclick="showPopup()"  download>
-                        <span class="download-icon"></span>Download
-                </a>
-            </div>
-            <div class="popup-overlay" id="popupOverlay">
+            
+
+    <div class="popup-overlay" id="popupOverlay">
     <div class="popup">
       <p>Sign up to get photo</p>
        <?php echo do_shortcode( ' [gravityform id="16"] ' ); ?>
@@ -110,8 +97,6 @@ if( $photo_gallerys ): ?>
       document.getElementById('popupOverlay').style.display = 'none';
     }
   </script>
-            <?php endforeach; ?>
-  </div>
             <form id="bulk-download-form">
     <div id="gallery" class="the_gallery row row-cols-lg-3 row-cols-md-2 row-cols-1 gap-2">
     <?php  $i = 1; ?>
