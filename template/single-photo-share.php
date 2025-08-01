@@ -131,7 +131,7 @@ if( $photo_gallerys ): ?>
 </form>
 
          
-<!-- <script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('bulk-download-form');
     const checkboxes = document.querySelectorAll('.gallery-checkbox');
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(err => alert('Failed to download: ' + err));
     });
 });
-</script> -->
+</script>
 
 
 
